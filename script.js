@@ -134,7 +134,6 @@
     'CSE Student at IUT, Gazipur 🎓',
     'Full Stack Developer 💻',
     'AI/ML enthusiast 🤖',
-    'Hackathon Finalist 🏆',
     'Always Building Something New 🚀',
   ];
 
