@@ -131,10 +131,10 @@
   if (!el) return;
 
   const phrases = [
-    'CSE Student at IUT, Dhaka 🎓',
+    'CSE Student at IUT, Gazipur 🎓',
+    'Full Stack Developer 💻',
+    'AI/ML enthusiast 🤖',
     'Hackathon Finalist 🏆',
-    'Aspiring Software Developer 💻',
-    'Anime Enthusiast 🎌',
     'Always Building Something New 🚀',
   ];
 
