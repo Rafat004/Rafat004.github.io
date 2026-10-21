@@ -292,3 +292,75 @@
     });
   });
 })();
+
+
+// ============================================
+// 8. CONTACT FORM AJAX SUBMISSION
+// ============================================
+(function initContactForm() {
+  const form = document.getElementById('contactForm');
+  const statusDiv = document.getElementById('formStatus');
+  const submitBtn = document.getElementById('submitBtn');
+  const btnText = document.getElementById('btnText');
+
+  if (!form) return;
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    // Disable button and indicate sending
+    if (submitBtn) submitBtn.disabled = true;
+    if (btnText) btnText.textContent = 'Sending...';
+
+    // Reset status div
+    if (statusDiv) {
+      statusDiv.className = 'form-status';
+      statusDiv.style.display = 'none';
+      statusDiv.innerHTML = '';
+    }
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/islamrafatul004@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json'
+        },
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (response.ok && (data.success === 'true' || data.success === true)) {
+        statusDiv.className = 'form-status form-status--success';
+        statusDiv.innerHTML = `
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>${data.message || 'Message sent successfully! I will get back to you soon.'}</span>
+        `;
+        statusDiv.style.display = 'flex';
+        form.reset();
+      } else {
+        const msg = data.message || 'Something went wrong. Please check your inputs or try again.';
+        statusDiv.className = 'form-status form-status--info';
+        statusDiv.innerHTML = `
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <span>${msg}</span>
+        `;
+        statusDiv.style.display = 'flex';
+      }
+    } catch (err) {
+      console.error('Contact Form Error:', err);
+      statusDiv.className = 'form-status form-status--error';
+      statusDiv.innerHTML = `
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+        <span>Failed to send. Please email me directly at <a href="mailto:islamrafatul004@gmail.com" style="color: inherit; text-decoration: underline;">islamrafatul004@gmail.com</a></span>
+      `;
+      statusDiv.style.display = 'flex';
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+      if (btnText) btnText.textContent = 'Send Message';
+    }
+  });
+})();
+
