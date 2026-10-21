@@ -41,6 +41,7 @@ Islamic University of Technology (IUT), Dhaka, Bangladesh
 
 - 📧 Email: [islamrafatul004@gmail.com](mailto:islamrafatul004@gmail.com)
 - 🐙 GitHub: [github.com/Rafat004](https://github.com/Rafat004)
+- 💼 LinkedIn: [md-rafatul-islam](https://www.linkedin.com/in/md-rafatul-islam-a32944445/)
 
 ## 📝 AI Tools Used
 
